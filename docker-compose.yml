@@ -1,0 +1,42 @@
+
+services:
+  database:
+    build:
+      context: ./Database
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./simpleapi2
+    container_name: simpleapi2
+    depends_on:
+      - database
+    ports:
+      - "8000:8080"
+    networks:
+      - app-network
+
+  httpd:
+    build:
+      context: ./http_server
+    container_name: http
+    ports:
+      - "82:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  db-data:
