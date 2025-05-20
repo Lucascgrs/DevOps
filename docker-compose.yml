@@ -35,6 +35,16 @@ services:
     networks:
       - app-network
 
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8090:8080"
+    depends_on:
+      - database
+    networks:
+      - app-network
+
 networks:
   app-network:
 
