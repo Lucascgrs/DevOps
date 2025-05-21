@@ -24,3 +24,7 @@ docker compose -d up to start containers in detached mode
 
 1-8 Document your docker-compose file.
 See the document docker compose on the repository
+
+
+
+Link to the second REPO : https://github.com/Lucascgrs/tp-devops-correction-docker.git
